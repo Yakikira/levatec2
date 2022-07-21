@@ -6,6 +6,8 @@ use App\Post;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\PostRequest;
+
 class PostController extends Controller
 {
     /*public function index(Post $post)
@@ -20,5 +22,16 @@ class PostController extends Controller
     {
         //dd($post);
         return view('posts/show')->with(['post' => $post]);
+    }
+    public function create()
+    {
+        //dd($post);
+        return view('posts/create');
+    }
+    public function store(PostRequest $request, Post $post)
+    {
+        $input = $request["post"];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
 }
