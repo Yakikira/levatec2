@@ -6,17 +6,20 @@
     </head>
     <body>
         <h1>ブログ投稿記事作成画面</h1>
-        <div class="posts">
-            <div class="post">
-                <form action="/posts" method="POST">
-                    {{ csrf_field() }}
-                    <p>タイトルを記入</p>
-                    <p><input tyep="text" id="post_title" placeholder="タイトル"/></p>
-                    <p>記事内容を記入</p>
-                    <p><textarea type="text" id="post_content" placeholder="記事内容"/></textarea> 
-                    <input type="submit" value="store"/>
-                </form>
+        <form action="/posts" method="POST">
+            @csrf
+            <div class="title">
+                <h2>Title</h2>
+                <input type="text" name="post[title]" placeholder="タイトル" value="{{old('post.title')}}"/>
+                <p class="title_error" style="color:red">{{$errors->first('post.title')}}</p>
             </div>
+            <div class="body">
+                <h2>Body</h2>
+                <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。" value="{{old('post.body')}}"></textarea>
+                <p class="body_error" style="color:red">{{$errors->first('post.body')}}</p>
+            </div>
+            <input type="submit" value="保存"/>
+        </form>
         <div><a href="/">戻る</a></div>
     </body>
 </html>
