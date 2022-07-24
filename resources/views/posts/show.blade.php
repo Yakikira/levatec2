@@ -8,6 +8,7 @@
         <h1>Blog Title</h1>
         <div class="posts">
             <div class="post">
+                <a href="">{{$post->category->name}}</a>
                 <h2>{{$post->title}}</h2>
                 <p>{{$post->body}}</p>
                 <p>{{$post->updated_at}}</p>
