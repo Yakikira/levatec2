@@ -1,4 +1,6 @@
 <!DOCTYPE HTML>
+@extends('layouts.app')
+@section('content')
 <html>
     <head>
         <meta charser="utf-8">
@@ -24,3 +26,4 @@
         <div><a href="/">戻る</a></div>
     </body>
 </html>
+@endsection

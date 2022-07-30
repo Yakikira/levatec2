@@ -1,10 +1,14 @@
 <!DOCTYPE HTML>
+@extends('layouts.app')
+@section('content')
+
 <html>
     <head>
         <meta charser="utf-8">
         <title>blog</title>
     </head>
     <body>
+        {{Auth::user()->name}}
         <h1>Blog Title</h1>
         <p class="create"><a href="/posts/create">投稿作成</a></p>
         <div class="posts">
@@ -20,16 +24,22 @@
         </div>
         <div class="category">
                 <h3>Categoryからえらぶ</h3>
-                <select name="post[category_id]">
-                    @foreach($posts as $post)
-                        //<option value="{{$post->category->id}}">{{$post->category->name}}</option>
-                        <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-                    @endforeach
-                </select>
+                
+                    
+                    <select name="post[category_id]">
+                        @foreach($categories as $category)
+                            @csrf
+                            <form action="/categorries/{{$category->id}}" method="GET">
+                                <a href="/categories/{{ $category->id }}">{{ $category->name }}</a>
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            </form>
+                        @endforeach
+                    </select>
+                
             </div>
-        <a href="/categories/{{$post->category->id}}">{{$post->category->name}}</a>
         <div>
             {{$posts->Links()}}
         </div>
     </body>
 </html>
+@endsection

@@ -1,10 +1,13 @@
 <!DOCTYPE HTML>
+@extends('layouts.app')
+@section('content')
 <html>
     <head>
         <meta charser="utf-8">
         <title>ブログ投稿</title>
     </head>
     <body>
+        {{Auth::user()}}
         <h1>ブログ投稿記事作成画面</h1>
         <form action="/posts" method="POST">
             @csrf
@@ -31,3 +34,4 @@
         <div><a href="/">戻る</a></div>
     </body>
 </html>
+@endsection
